@@ -14,7 +14,7 @@ export const Contact = ({ id, name, number }) => {
       </ContactInfo>
 
       <DeleteButton type="button" onClick={() => dispatch(deleteContact(id))}>
-        <DeleteIcon fill="#f56464"></DeleteIcon>
+        <DeleteIcon fill="#f6ad1b"></DeleteIcon>
       </DeleteButton>
     </Item>
   );

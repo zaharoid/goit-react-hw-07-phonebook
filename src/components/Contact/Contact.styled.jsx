@@ -8,11 +8,11 @@ export const ContactInfo = styled.div`
 
 export const Item = styled.li`
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   width: 300px;
   height: 50px;
   padding: 5px;
-  border: 2px solid #c30bb2;
+  border: 2px solid #6fe149;
   border-radius: 5px;
+  background-color: #dcead7;
 `;

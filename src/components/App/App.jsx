@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Phonebook from 'components/Phonebook';
 import ContactsList from 'components/Contacts';
 import Filter from 'components/Filter';
 import Modal from 'components/Modal';
-import { Title1, Title2 } from './App.styled';
+import { Header, Title1, Title2 } from './App.styled';
 import { ReactComponent as AddIcon } from 'icons/Add.svg';
 import { CloseIcon } from 'components/Modal/Modal.styled';
 import { AddButton } from 'components/IconButton/IconButton.styled';
@@ -18,7 +19,9 @@ function App() {
 
   return (
     <>
-      <Title1>Phonebook</Title1>
+      <Header>
+        <Title1>Phonebook</Title1>
+      </Header>
       <AddButton onClick={toggleModal} aria-label="open modal">
         <AddIcon fill="#fff"></AddIcon>
       </AddButton>

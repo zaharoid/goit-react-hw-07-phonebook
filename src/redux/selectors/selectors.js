@@ -1,7 +1,7 @@
-export const getContacts = state => state.contacts.items;
+export const selectContacts = state => state.contacts.items;
 
-export const getLoading = state => state.contacts.isLoading;
+export const selectLoading = state => state.contacts.isLoading;
 
-export const getError = state => state.contacts.error;
+export const selectError = state => state.contacts.error;
 
-export const getFilter = state => state.filter;
+export const selectFilter = state => state.filter;

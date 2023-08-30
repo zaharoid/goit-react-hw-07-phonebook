@@ -2,17 +2,16 @@ import { useState } from 'react';
 import { Notify } from 'notiflix';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormWrapper, Label, Input, Button } from './Phonebook.styled';
-import { getContacts } from 'redux/selectors/selectors';
+import { selectContacts } from 'redux/selectors/selectors';
 import { addContact } from 'redux/operations/contactOperations';
 
 function Phonebook({ onCloseModal }) {
-
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
 
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const onChangeInput = e => {
     const { name, value } = e.currentTarget;
@@ -38,7 +37,6 @@ function Phonebook({ onCloseModal }) {
 
     for (const contact of contacts) {
       if (contact.name === name) {
-        
         onCloseModal();
         reset();
 
