@@ -41,7 +41,7 @@ export const DeleteButton = styled.button`
 
   &:hover > :only-child {
     fill: #fe1414;
-    transition: hover 250ms linear;
+    transition: all 250ms linear;
   }
   &:hover {
     border: 1px solid #fe1414;
