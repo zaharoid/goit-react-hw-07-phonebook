@@ -37,14 +37,18 @@ export const DeleteButton = styled.button`
   border-radius: 50%;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: all 250ms linear;
+  transition: hover 250ms linear;
 
   &:hover > :only-child {
     fill: #fe1414;
-    transition: all 250ms linear;
+    transition: hover 250ms linear;
   }
   &:hover {
     border: 1px solid #fe1414;
+  }
+  &:disabled {
+    background-color: #959494;
+    border: 1px solid transparent;
   }
 `;
 

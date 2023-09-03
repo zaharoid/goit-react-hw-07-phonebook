@@ -12,7 +12,7 @@ import {
 } from 'components/IconButton/IconButton.styled';
 import { deleteContact } from 'redux/operations/contactOperations';
 import { selectError } from 'redux/selectors/selectors';
-import { RewriteContact } from 'components/RewriteContact/rewriteContact';
+import { RewriteContact } from 'components/RewriteContact/RewriteContact';
 import Modal from 'components/Modal/Modal';
 
 export const Contact = ({ id, name, number }) => {
@@ -57,7 +57,11 @@ export const Contact = ({ id, name, number }) => {
           />
         )}
         <ButtonContainer>
-          <DeleteButton type="button" onClick={onDeleteContact}>
+          <DeleteButton
+            type="button"
+            disabled={loading}
+            onClick={onDeleteContact}
+          >
             <DeleteIcon fill="#f77383"></DeleteIcon>
           </DeleteButton>
           <EditButton onClick={onStartRewriting}>

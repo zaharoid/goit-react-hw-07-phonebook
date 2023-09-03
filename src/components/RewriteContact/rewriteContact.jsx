@@ -1,4 +1,4 @@
-import { RewriteModalTitle } from './rewriteContact.styled';
+import { RewriteModalTitle } from './RewriteContact.styled';
 import { useState } from 'react';
 import { Oval } from 'react-loader-spinner';
 import {
