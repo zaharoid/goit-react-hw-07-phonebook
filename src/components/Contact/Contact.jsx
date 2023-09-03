@@ -67,7 +67,10 @@ export const Contact = ({ id, name, number }) => {
       </Item>
       {modalIsOpen && (
         <Modal onClose={onCloseModal}>
-          <RewriteContact contactData={{ name, number, id }} />
+          <RewriteContact
+            contactData={{ name, number, id }}
+            onClose={onCloseModal}
+          />
         </Modal>
       )}
     </>
