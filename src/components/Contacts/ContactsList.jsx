@@ -1,9 +1,15 @@
-import { List, TotalCount } from './ContactsList.styled';
+import {
+  List,
+  TotalCount,
+  ListContainer,
+  InfoContainer,
+} from './ContactsList.styled';
 import { selectContacts, selectFilter } from 'redux/selectors/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { Contact } from 'components/Contact/Contact';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { fetchContacts } from 'redux/operations/contactOperations';
+import Filter from 'components/Filter/Filter';
 
 function ContactsList() {
   const contacts = useSelector(selectContacts);
@@ -14,32 +20,34 @@ function ContactsList() {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const getFilteredContacts = () => {
+  const getFilteredContacts = useMemo(() => {
     const normalizedFilter = filterString.toLowerCase();
     return contacts.filter(({ name }) =>
       name.toLowerCase().includes(normalizedFilter)
     );
-  };
+  }, [contacts, filterString]);
 
-  const filteredContacts = getFilteredContacts();
   const contactsCount = contacts.length;
-  const filteredContactsCount = filteredContacts.length;
+  const filteredContactsCount = getFilteredContacts.length;
 
   return (
     <>
-      <TotalCount>
-        Total number of contacts: {contacts && contactsCount}
-      </TotalCount>
-      {filterString && (
-        <TotalCount>Found contacts: {filteredContactsCount}</TotalCount>
-      )}
+      <Filter />
+      <ListContainer>
+        <InfoContainer>
+          <TotalCount>quantity: {contacts && contactsCount}</TotalCount>
+          {filterString && (
+            <TotalCount>Found contacts: {filteredContactsCount}</TotalCount>
+          )}
+        </InfoContainer>
 
-      <List>
-        {contacts &&
-          filteredContacts.map(({ id, name, number }) => {
-            return <Contact key={id} id={id} name={name} number={number} />;
-          })}
-      </List>
+        <List>
+          {contacts &&
+            getFilteredContacts.map(contact => {
+              return <Contact key={contact.id} {...contact} />;
+            })}
+        </List>
+      </ListContainer>
     </>
   );
 }

@@ -4,7 +4,7 @@ export const FormWrapper = styled.div`
   flex-direction: column;
   gap: 20px;
   width: 275px;
-  border: solid 3px #45cd24;
+  border: solid 3px #84c7df;
   padding: 15px;
   border-radius: 5px;
 
@@ -16,6 +16,7 @@ export const Label = styled.label`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  font-family: 'Montserrat', sans-serif;
 
   text-align: center;
 `;
@@ -53,8 +54,35 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  padding: 7px;
-  border: solid 2px #45cd24;
-  border-radius: 10px;
-  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 220px;
+  height: 42.5px;
+  line-height: 35px;
+  border-radius: 45px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 3px;
+  font-weight: 400;
+  color: #524f4e;
+  background: white;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+
+  &:hover {
+    background: #20aee3;
+    box-shadow: 0 15px 20px rgba(120, 164, 231, 0.4);
+    color: white;
+    transform: translateY(-2px);
+    cursor: pointer;
+  }
 `;

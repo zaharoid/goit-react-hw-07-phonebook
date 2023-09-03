@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import Phonebook from 'components/Phonebook';
 import ContactsList from 'components/Contacts';
-import Filter from 'components/Filter';
 import Modal from 'components/Modal';
 import { Header, Title1, Title2 } from './App.styled';
 import { ReactComponent as AddIcon } from 'icons/Add.svg';
@@ -27,7 +25,7 @@ function App() {
       </AddButton>
 
       {showModal && (
-        <Modal onClose={toggleModal}>
+        <Modal onClose={toggleModal} showModal={showModal}>
           <ModalTitle>Add contact</ModalTitle>
           <Phonebook onCloseModal={toggleModal} />
           <CloseModalBtn type="button" onClick={toggleModal}>
@@ -37,7 +35,7 @@ function App() {
       )}
 
       <Title2>Contacts</Title2>
-      <Filter />
+
       <ContactsList />
     </>
   );

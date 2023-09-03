@@ -2,13 +2,15 @@ import { useState } from 'react';
 import { Notify } from 'notiflix';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormWrapper, Label, Input, Button } from './Phonebook.styled';
-import { selectContacts } from 'redux/selectors/selectors';
+import { selectContacts, selectLoading } from 'redux/selectors/selectors';
 import { addContact } from 'redux/operations/contactOperations';
+import { Oval } from 'react-loader-spinner';
 
 function Phonebook({ onCloseModal }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
+  const isLoading = useSelector(selectLoading);
   const dispatch = useDispatch();
 
   const contacts = useSelector(selectContacts);
@@ -32,7 +34,7 @@ function Phonebook({ onCloseModal }) {
     setNumber('');
   };
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
 
     for (const contact of contacts) {
@@ -43,13 +45,14 @@ function Phonebook({ onCloseModal }) {
         return Notify.warning(`${name} is already exist`);
       }
     }
-    dispatch(addContact({ name, number }));
+    await dispatch(addContact({ name, number }));
+    Notify.success('Contact was successfully added :)');
     reset();
     onCloseModal();
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form autoComplete="off" onSubmit={onSubmit}>
       <FormWrapper>
         <Label>
           <span>Name</span>
@@ -65,7 +68,7 @@ function Phonebook({ onCloseModal }) {
         </Label>
 
         <Label>
-          <span>Contacts</span>
+          <span>Phone number</span>
           <Input
             type="tel"
             name="number"
@@ -77,15 +80,24 @@ function Phonebook({ onCloseModal }) {
           />
         </Label>
 
-        <Button type="submit">Add contact</Button>
+        <Button type="submit">
+          Add
+          {isLoading && (
+            <Oval
+              height="25"
+              width="25"
+              radius="9"
+              color="#000000"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              visible={true}
+              strokeWidth={6}
+            />
+          )}
+        </Button>
       </FormWrapper>
     </form>
   );
 }
 
 export default Phonebook;
-
-// Phonebook.propTypes = {
-//   getContact: PropTypes.func.isRequired,
-//   contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
-// };
